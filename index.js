@@ -7,7 +7,7 @@ const STORE = {
     {name: 'milk', checked: true},
     {name: 'bread', checked: false}
   ],
-  display: 'All'
+  displayUnchecked: 'false'
 };
 
 
