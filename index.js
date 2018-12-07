@@ -40,7 +40,8 @@ function generateShoppingItemsString(shoppingList) {
 
 function renderShoppingList() {
   // render the shopping list in the DOM
-  const shoppingListItemsString = generateShoppingItemsString(STORE);
+  const {items} = STORE;
+  const shoppingListItemsString = generateShoppingItemsString(items);
 
   // insert that HTML into the DOM
   $('.js-shopping-list').html(shoppingListItemsString);
@@ -48,7 +49,8 @@ function renderShoppingList() {
 
 
 function addItemToShoppingList(itemName) {
-  STORE.push({name: itemName, checked: false});
+  const {items} = STORE;
+  items.push({name: itemName, checked: false});
 }
 
 function handleNewItemSubmit() {
@@ -62,11 +64,13 @@ function handleNewItemSubmit() {
 }
 
 function toggleCheckedForListItem(itemIndex) {
-  STORE[itemIndex].checked = !STORE[itemIndex].checked;
+  const {items} = STORE;
+  items[itemIndex].checked = !items[itemIndex].checked;
 }
 
 function deleteItemFromList(itemIndex) {
-  STORE.splice(itemIndex, 1);
+  const {items} = STORE;
+  items.splice(itemIndex, 1);
 }
 
 
