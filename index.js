@@ -105,19 +105,14 @@ function handleDeleteItemClicked() {
 
 
 function handleUnCheckedToggleDisplay() {
-  // this function will be responsible for handling a new display of the shopping list based
-  // what is checked and what isn't
-  const unchecked = [];
-  const { items } = STORE;
   $('.js-check-box').on('change', function () {
     STORE.displayUnchecked = !STORE.displayUnchecked;
-    // if true, display only unchecked items in list
     renderShoppingList();
   });
 
 }
 
-function handleUserSearch (searchTerm) {
+function handleUserSearch () {
   // this function will be responsible for handling a new display of the shopping list based
   // on a term the user searches for
   // its going to grab the value from the input field
