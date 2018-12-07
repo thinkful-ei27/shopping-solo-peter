@@ -40,8 +40,14 @@ function generateShoppingItemsString(shoppingList) {
 function renderShoppingList() {
   // render the shopping list in the DOM
   const { items } = STORE;
-  const shoppingListItemsString = generateShoppingItemsString(items);
+  let shoppingListItemsString;
 
+  if (STORE.displayUnchecked) {
+    const unchecked = items.filter(item => !(item.checked));
+    shoppingListItemsString = generateShoppingItemsString(unchecked);
+  } else {
+    shoppingListItemsString = generateShoppingItemsString(items);
+  }
   // insert that HTML into the DOM
   $('.js-shopping-list').html(shoppingListItemsString);
 }
@@ -98,17 +104,15 @@ function handleDeleteItemClicked() {
 }
 
 
-function handleCheckedToggleDisplay() {
+function handleUnCheckedToggleDisplay() {
   // this function will be responsible for handling a new display of the shopping list based
   // what is checked and what isn't
   const unchecked = [];
   const { items } = STORE;
   $('.js-check-box').on('change', function () {
     STORE.displayUnchecked = !STORE.displayUnchecked;
-  // if true, display only unchecked items in list
-    if (STORE.displayUnchecked) {
-      unchecked.push(items.filter(item => !(item.checked)));
-    }
+    // if true, display only unchecked items in list
+    renderShoppingList();
   });
 
 }
@@ -142,7 +146,7 @@ function handleShoppingList() {
   handleNewItemSubmit();
   handleItemCheckClicked();
   handleDeleteItemClicked();
-  handleCheckedToggleDisplay();
+  handleUnCheckedToggleDisplay();
 }
 
 // when the page loads, call `handleShoppingList`
