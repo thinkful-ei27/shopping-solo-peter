@@ -7,7 +7,7 @@ const STORE = {
     {name: 'milk', checked: true},
     {name: 'bread', checked: false}
   ],
-  displayUnchecked: 'false'
+  displayUnchecked: false
 };
 
 
@@ -37,10 +37,9 @@ function generateShoppingItemsString(shoppingList) {
   return items.join('');
 }
 
-
 function renderShoppingList() {
   // render the shopping list in the DOM
-  const {items} = STORE;
+  const { items } = STORE;
   const shoppingListItemsString = generateShoppingItemsString(items);
 
   // insert that HTML into the DOM
@@ -49,7 +48,7 @@ function renderShoppingList() {
 
 
 function addItemToShoppingList(itemName) {
-  const {items} = STORE;
+  const { items } = STORE;
   items.push({name: itemName, checked: false});
 }
 
@@ -64,12 +63,12 @@ function handleNewItemSubmit() {
 }
 
 function toggleCheckedForListItem(itemIndex) {
-  const {items} = STORE;
+  const { items } = STORE;
   items[itemIndex].checked = !items[itemIndex].checked;
 }
 
 function deleteItemFromList(itemIndex) {
-  const {items} = STORE;
+  const { items } = STORE;
   items.splice(itemIndex, 1);
 }
 
@@ -82,7 +81,7 @@ function getItemIndexFromElement(item) {
 }
 
 function handleItemCheckClicked() {
-  $('.js-shopping-list').on('click', '.js-item-toggle', event => {
+  $('.js-shopping-list').on('click', '.js-item-toggle', function (event) {
     const itemIndex = getItemIndexFromElement(event.currentTarget);
     toggleCheckedForListItem(itemIndex);
     renderShoppingList();
@@ -98,12 +97,20 @@ function handleDeleteItemClicked() {
   });
 }
 
-function handleCheckedToggleDisplay(checkedState) {
+
+function handleCheckedToggleDisplay() {
   // this function will be responsible for handling a new display of the shopping list based
-  // what is checked and what isn't 
-  // if toggled display only checked items in list
-  // else display all items in list
-  // render new shopping list
+  // what is checked and what isn't
+  const unchecked = [];
+  const { items } = STORE;
+  $('.js-check-box').on('change', function () {
+    STORE.displayUnchecked = !STORE.displayUnchecked;
+  // if true, display only unchecked items in list
+    if (STORE.displayUnchecked) {
+      unchecked.push(items.filter(item => !(item.checked)));
+    }
+  });
+
 }
 
 function handleUserSearch (searchTerm) {
@@ -135,6 +142,7 @@ function handleShoppingList() {
   handleNewItemSubmit();
   handleItemCheckClicked();
   handleDeleteItemClicked();
+  handleCheckedToggleDisplay();
 }
 
 // when the page loads, call `handleShoppingList`
