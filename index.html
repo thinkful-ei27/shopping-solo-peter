@@ -14,8 +14,11 @@
         <form id="js-shopping-list-form">
             <label for="shopping-list-entry">Add an item</label>
             <input type="text" name="shopping-list-entry" class="js-shopping-list-entry" placeholder="e.g., broccoli">
-            <button type="submit">Add item</button>
+            <button type="submit" name="action" value="add item">Add item</button>
+            <button type="submit" name="action" value="search">Search</button>
         </form>
+        <label for="display-checked-items">Display Checked Items Only</label>
+        <input type="checkbox" name="display-checked-items" />
         <ul class="shopping-list js-shopping-list">
         </ul>
     </div>
