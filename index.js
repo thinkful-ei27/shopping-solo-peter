@@ -115,22 +115,13 @@ function handleUnCheckedToggleDisplay() {
   });
 }
 
-function getSearchTerm () {
-  $('.js-search-input').on('keyup', function () {
-    setSearchTerm($(this).val());
-  });
-}
-
 function setSearchTerm (word) {
   return STORE.searchTerm = word;
 }
 
-// weird bug -- search button only submitting after user types in something, then backspaces 
-// then types in again and submits
 function handleUserSearch () {
-  $('#js-shopping-list-search').submit(function (event) {
-    event.preventDefault();
-    getSearchTerm ();
+  $('.js-search-input').on('keyup', function () {
+    setSearchTerm($(this).val());
     renderShoppingList();
   });
 }
