@@ -12,7 +12,7 @@ const STORE = {
 };
 
 
-function generateItemElement(item, itemIndex, template) {
+function generateItemElement(item, itemIndex) {
   return `
     <li class="js-item-index-element" data-item-index="${itemIndex}">
       <span class="shopping-item js-shopping-item ${item.checked ? 'shopping-item__checked' : ''}">${item.name}</span>
@@ -23,9 +23,7 @@ function generateItemElement(item, itemIndex, template) {
         <button class="shopping-item-delete js-item-delete">
             <span class="button-label">delete</span>
         </button>
-        <button class="shopping-item-edit js-item-edit">
-          <span class="button-label">edit</span>
-        </button>
+        
       </div>
     </li>`;
 }
@@ -127,8 +125,10 @@ function setSearchTerm (word) {
   return STORE.searchTerm = word;
 }
 
+// weird bug -- search button only submitting after user types in something, then backspaces 
+// then types in again and submits
 function handleUserSearch () {
-  $('.js-shopping-list-form').submit(function (event) {
+  $('#js-shopping-list-search').submit(function (event) {
     event.preventDefault();
     getSearchTerm ();
     renderShoppingList();

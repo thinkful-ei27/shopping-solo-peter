@@ -50,6 +50,6 @@ button:hover {
   text-decoration: line-through;
 }
 
-div.search-container {
+#js-shopping-list-search {
   margin-top: 10px;
 }

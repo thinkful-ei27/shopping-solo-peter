@@ -16,13 +16,12 @@
             <input type="text" name="shopping-list-entry" class="js-shopping-list-entry" placeholder="e.g., broccoli">
             <button type="submit" name="action" value="add item">Add item</button>
             <label for="display-un-checked-items">Hide Checked</label>
-            <input type="checkbox" name="display-un-checked-items" class="js-check-box"/>
-            <div class="search-container">
-                <input type="text" name="search-shopping-list" class="js-search-input" />
-                <button type="submit" name="action" value="search">Search</button>
-                <button disabled value="back" class="js-search-back-btn">Back</button>
-            </div>            
+            <input type="checkbox" name="display-un-checked-items" class="js-check-box"/>      
         </form>
+        <form id="js-shopping-list-search">
+            <input type="text" name="search-shopping-list" class="js-search-input" />
+            <button type="submit" name="action" value="search">Search</button>
+        </form>     
         <ul class="shopping-list js-shopping-list">
         </ul>
     </div>
